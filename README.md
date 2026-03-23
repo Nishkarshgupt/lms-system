@@ -97,8 +97,7 @@ Example:
 
 ```
 MONGO_URI=
-SESSION_SECRET=
-PORT=3000
+JWT_SECRET=
 ```
 
 ⚠️ `.env` file is ignored in `.gitignore` for security reasons.
@@ -142,7 +141,7 @@ node app.js
 or
 
 ```
-npm start
+npm run dev
 ```
 
 ---
@@ -209,17 +208,6 @@ views/
  ├── teacher/
  └── auth/
 ```
-
----
-
-# 📈 Future Improvements
-
-* Course management system
-* Assignment submission
-* Quiz system
-* Admin dashboard
-* File uploads
-* Notifications
 
 ---
 
