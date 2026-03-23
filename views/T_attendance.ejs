@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Attendance</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+            transition: background 0.5s ease-in-out;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .header nav {
+            width: 100%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            background-color: #24cfa6;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1a9c7e;
+        }
+
+        .attendance-container {
+            max-width: 1000px;
+            margin: 50px auto 172px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .attendance-table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        .attendance-table th, .attendance-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .attendance-table th {
+            background-color: #24cfa6;
+            color: white;
+        }
+
+        .attendance-table td {
+            background-color: #1e1e2f;
+            color: white;
+        }
+
+        .attendance-table .present, .attendance-table .absent {
+            cursor: pointer;
+        }
+
+        .attendance-table .present:hover, .attendance-table .absent:hover {
+            background-color: #2c2c3e;
+        }
+
+        /* Smooth page transitions */
+        body {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Teacher Panel</h1>
+            <p>Mark Student Attendance</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="/teacher_panel" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/T_profile" class="nav-link">Profile</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a href="/T_attendance" class="nav-link active">Attendance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/T_logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="d-flex align-items-end justify-content-end">
+            <!-- Profile Dropdown -->
+            <div class="dropdown me-3">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="profileDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><span class="dropdown-item">Name: Manikandan sir</span></li>
+                    <li><span class="dropdown-item">Teacher ID: T12345</span></li>
+                    <li><span class="dropdown-item">Department: Computer Science</span></li>
+                </ul>
+            </div>
+            <!-- Hamburger Menu Button for Mobile View -->
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Section (Attendance) -->
+    <div class="attendance-container">
+        <h2 class="text-center mb-4">Mark Attendance for Your Class</h2>
+
+        <!-- Attendance Table -->
+        <table class="attendance-table">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Present</th>
+                    <th>Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add student rows here -->
+                <tr><td>Arjun Kumar</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Aditi Sharma</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Sahil Gupta</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Rina Verma</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Vikram Singh</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Amit Yadav</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Priya Soni</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Rajesh Singh</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Anjali Gupta</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Shubham Reddy</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Neha Yadav</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <!-- Add more students until 70 -->
+                <tr><td>Student 6</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <tr><td>Student 7</td><td class="present" onclick="markAttendance(this)">P</td><td class="absent" onclick="markAttendance(this)">A</td></tr>
+                <!-- Continue with 70 students -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function markAttendance(element) {
+            // Toggle between present and absent
+            if (element.classList.contains('present')) {
+                element.classList.remove('present');
+                element.classList.add('absent');
+                element.textContent = 'A';
+            } else if (element.classList.contains('absent')) {
+                element.classList.remove('absent');
+                element.classList.add('present');
+                element.textContent = 'P';
+            }
+        }
+    </script>
+</body>
+
+</html>

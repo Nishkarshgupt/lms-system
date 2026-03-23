@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Messaging</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+            transition: background 0.5s ease-in-out;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .header nav {
+            width: 100%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            background-color: #24cfa6;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1a9c7e;
+        }
+
+        .message-container {
+            max-width: 1000px;
+            margin: 50px auto 127px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .message-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .student-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .student-card {
+            background-color: #1e1e2f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .student-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .student-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .student-card h5 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .student-card button {
+            margin-top: 15px;
+            background-color: #24cfa6;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .student-card button:hover {
+            background-color: #1a9c7e;
+        }
+
+        .group-container {
+            margin-top: 30px;
+        }
+
+        .group-card {
+            background-color: #1e1e2f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .group-card .group-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .group-card .student-group {
+            margin-top: 10px;
+        }
+
+        .group-card .student-group span {
+            background-color: #353545;
+            padding: 8px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .group-card button {
+            background-color: #e74c3c;
+            border-radius: 8px;
+            padding: 8px 15px;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .group-card button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Message Box Styles */
+        .message-box {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .message-box input {
+            width: 85%;
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            background-color: #353545;
+            color: white;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .message-box input:focus {
+            border-color: #24cfa6;
+        }
+
+        .message-box button {
+            width: 15%;
+            margin-left: 10px;
+            padding: 12px;
+            background-color: #24cfa6;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-box button:hover {
+            background-color: #1a9c7e;
+            transform: translateX(5px);
+        }
+
+        .message-box button i {
+            transition: transform 0.3s ease;
+        }
+
+        .message-box button:hover i {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Teacher Panel</h1>
+            <p>Your Messaging System</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="/teacher_panel" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/T_profile" class="nav-link">Profile</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a href="/T_attendance" class="nav-link">Attendance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Section (Teacher Messaging) -->
+    <div class="message-container">
+        <h2>Teacher Messaging System</h2>
+
+        <!-- List of 10 Indian Students -->
+        <div class="student-list">
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/men/27.jpg" alt="Student Image">
+                <h5>Rahul Singh</h5>
+                <button onclick="selectStudent('Rahul Singh', this)">Select</button>
+                <button onclick="removeStudent('Rahul Singh', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/women/30.jpg" alt="Student Image">
+                <h5>Priya Patel</h5>
+                <button onclick="selectStudent('Priya Patel', this)">Select</button>
+                <button onclick="removeStudent('Priya Patel', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/men/21.jpg" alt="Student Image">
+                <h5>Amit Sharma</h5>
+                <button onclick="selectStudent('Amit Sharma', this)">Select</button>
+                <button onclick="removeStudent('Amit Sharma', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Student Image">
+                <h5>Neha Reddy</h5>
+                <button onclick="selectStudent('Neha Reddy', this)">Select</button>
+                <button onclick="removeStudent('Neha Reddy', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Student Image">
+                <h5>Vikram Yadav</h5>
+                <button onclick="selectStudent('Vikram Yadav', this)">Select</button>
+                <button onclick="removeStudent('Vikram Yadav', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Student Image">
+                <h5>Anjali Singh</h5>
+                <button onclick="selectStudent('Anjali Singh', this)">Select</button>
+                <button onclick="removeStudent('Anjali Singh', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Student Image">
+                <h5>Karan Joshi</h5>
+                <button onclick="selectStudent('Karan Joshi', this)">Select</button>
+                <button onclick="removeStudent('Karan Joshi', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Student Image">
+                <h5>Sonal Verma</h5>
+                <button onclick="selectStudent('Sonal Verma', this)">Select</button>
+                <button onclick="removeStudent('Sonal Verma', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Student Image">
+                <h5>Rajesh Kumar</h5>
+                <button onclick="selectStudent('Rajesh Kumar', this)">Select</button>
+                <button onclick="removeStudent('Rajesh Kumar', this)" style="display:none;">Remove</button>
+            </div>
+            <div class="student-card">
+                <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Student Image">
+                <h5>Simran Kaur</h5>
+                <button onclick="selectStudent('Simran Kaur', this)">Select</button>
+                <button onclick="removeStudent('Simran Kaur', this)" style="display:none;">Remove</button>
+            </div>
+        </div>
+
+        <!-- Group Selection and Message -->
+        <div class="group-container">
+            <h3>Selected Students for Group</h3>
+            <div id="selected-students" class="group-card">
+                <div class="group-name">Group: <span id="group-name">Group 1</span></div>
+                <div id="student-group" class="student-group">
+                    <!-- Selected students will appear here -->
+                </div>
+                <button onclick="sendMessageToGroup()">Send Message to Group</button>
+            </div>
+
+            <!-- Message Box -->
+            <div class="message-box">
+                <input type="text" id="message-input" placeholder="Type your message..." />
+                <button onclick="sendMessage()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let selectedStudents = [];
+
+        // Function to select or remove a student
+        function selectStudent(studentName, buttonElement) {
+            // Check if the student is already selected
+            if (!selectedStudents.includes(studentName)) {
+                selectedStudents.push(studentName);
+                buttonElement.style.display = 'none';  // Hide Select button
+                buttonElement.nextElementSibling.style.display = 'inline-block';  // Show Remove button
+                updateSelectedStudents();  // Update the display
+            }
+        }
+
+        // Function to remove a student from the group
+        function removeStudent(studentName, buttonElement) {
+            selectedStudents = selectedStudents.filter(student => student !== studentName);
+            buttonElement.style.display = 'none';  // Hide Remove button
+            buttonElement.previousElementSibling.style.display = 'inline-block';  // Show Select button
+            updateSelectedStudents();  // Update the display
+        }
+
+        // Function to update the displayed list of selected students
+        function updateSelectedStudents() {
+            const studentGroup = document.getElementById("student-group");
+            studentGroup.innerHTML = '';  // Clear the list before updating
+            selectedStudents.forEach(student => {
+                const studentElement = document.createElement("span");
+                studentElement.textContent = student;
+                studentElement.style.padding = "8px";
+                studentElement.style.borderRadius = "5px";
+                studentElement.style.backgroundColor = "#353545";
+                studentElement.style.marginRight = "10px";
+                studentGroup.appendChild(studentElement);
+            });
+        }
+
+        // Function to send a message to the group
+        function sendMessageToGroup() {
+            if (selectedStudents.length > 0) {
+                alert("Message sent to group: " + selectedStudents.join(', '));
+            } else {
+                alert("Please select students first.");
+            }
+        }
+
+        // Function to send message from the message box
+        function sendMessage() {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value.trim();
+
+            if (message) {
+                alert("Message sent: " + message);
+                messageInput.value = '';  // Clear the message box after sending
+            } else {
+                alert("Please type a message.");
+            }
+        }
+
+        // Add functionality for Enter key
+        document.getElementById("message-input").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent default behavior of the Enter key
+                sendMessage(); // Call sendMessage() when Enter is pressed
+            }
+        });
+    </script>
+</body>
+
+</html>

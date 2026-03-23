@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+        }
+
+
+
+        #centre {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        .capsule {
+            background-color: #dadada;
+            border-radius: 100px;
+            width: 250px;
+            height: 10px;
+
+        }
+
+        .progress {
+            transition: all cubic-bezier(0.19, 1, 0.22, 1) .2s;
+            background-color: rgb(65, 180, 65);
+            width: 0%;
+            height: 100%;
+            border-radius: 100px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div id="centre">
+        <h3>Loading....</h3>
+        <div class="capsule">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+
+    <script>
+        var h3 = document.querySelector('h3');
+        var prg = document.querySelector('.progress');
+
+        var count = 0;
+
+        var int = setInterval(function () {
+            if (count === 100) {
+                clearInterval(int);
+                window.location.href = '/teacher_login';
+            }
+            count++;
+            prg.style.width = count + '%';
+        }, 4);
+    </script>
+</body>
+
+</html>

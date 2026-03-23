@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor-Mentee - Student Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+            transition: background 0.5s ease-in-out;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .header nav {
+            width: 60%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+        .mentor-section {
+            max-width: 1200px;
+            margin: 50px auto 127px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .mentor-profile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .mentor-profile img {
+           
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 5px solid #24cfa6;
+            
+        }
+
+        .mentor-details {
+            flex: 1;
+            color: #d4d4d4;
+        }
+
+        .mentor-details h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .mentor-details p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .mentor-details .contact-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .contact-info .icon {
+            font-size: 1.8rem;
+            color: #24cfa6;
+        }
+
+        .button-group {
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .update-btn {
+            background-color: #24cfa6;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .message-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .message-section input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            margin-right: 15px;
+        }
+
+        .message-section button {
+            padding: 15px 20px;
+            background-color: #24cfa6;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .message-section button:hover {
+            background-color: #1f9d85;
+        }
+        .upload-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #24cfa6;
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            height: 41px;
+           
+        }
+
+        .upload-btn:hover {
+            background-color: #1a9c7e;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Mentor-Mentee Section</h1>
+            <p>Your personal guide and mentor are here to help you!</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-60">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="/student_panel" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/course" class="nav-link">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/mentor_mentee" class="nav-link active">Mentor-Mentee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mentor-Details Section -->
+    <div class="mentor-section">
+        <div class="mentor-profile">
+            <img id="mentorPic" src="https://cdn1.iconfinder.com/data/icons/circle-flats/170/contacts-512.png" alt="Mentor Picture">
+            <div class="mentor-details">
+                <h3>Mr. Manikandan Sir</h3>
+                <p><strong>Education:</strong> Ph.D. in Computer Science, XYZ University</p>
+                <p><strong>Area of Expertise:</strong> Web Development, Machine Learning</p>
+
+                <div class="contact-info">
+                    <div class="icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <p>+123 456 7890</p>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <p>mentor.manikandan@example.com</p>
+                    </div>
+                </div>
+
+                <!-- Button Group for updating and deleting picture -->
+                <div class="button-group">
+                    <!-- <button class="update-btn" onclick="updatePicture()">Update Picture -->
+                        <label for="photo-upload" class="upload-btn">Upload Photo</label>
+                <input type="file" id="photo-upload" accept="image/*" onchange="displayImage(event)">
+                    </button>
+                    <button class="delete-btn" onclick="deletePicture()">Delete Picture</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Section -->
+        <div class="message-section">
+            <input type="text" id="messageInput" placeholder="Type your message to your mentor...">
+            <button onclick="sendMessage()">Send Message</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Function for updating the profile picture (you can integrate with a backend upload system)
+        function updatePicture() {
+            alert("Profile picture updated! (This can be connected to a backend upload functionality.)");
+            // You can add a file input and functionality to upload the image here
+        }
+
+        // Function for deleting the profile picture
+        function deletePicture() {
+            document.getElementById('mentorPic').src = 'default-pic.jpg'; // Use a default image as placeholder
+            alert("Profile picture deleted.");
+        }
+
+        // Function for sending the message to mentor's email (this can be integrated with backend services)
+        function sendMessage() {
+            const message = document.getElementById('messageInput').value;
+            if (message.trim() === '') {
+                alert("Please type a message before sending.");
+                return;
+            }
+
+            // Here, you can integrate an email service (like SendGrid or your own backend) to send the email
+            const mentorEmail = 'mentor.manikandan@example.com';
+            // For now, we'll just simulate the message being sent
+            alert(`Your message has been sent to ${mentorEmail}!`);
+
+            document.getElementById('messageInput').value = ''; // Clear input field
+        }
+        function displayImage(event) {
+            var output = document.getElementById('student-photo');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+</body>
+
+</html>

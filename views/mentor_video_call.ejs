@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Video Call - Student Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+            transition: background 0.5s ease-in-out;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .header nav {
+            width: 60%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+        .mentor-details {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            margin-top: 30px;
+        }
+
+        .mentor-profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mentor-profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #24cfa6;
+            object-fit: cover;
+        }
+
+        .mentor-info h3 {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .mentor-info h5 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #d4d4d4;
+        }
+
+        .mentor-info p {
+            margin-bottom: 10px;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-video-call {
+            background-color: #24cfa6;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-video-call:hover {
+            background-color: #20b492;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            color: white;
+            border: 2px solid #24cfa6;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 12px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #24cfa6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Student Panel</h1>
+            <p>Video Call with Mentor</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-60">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="/student_panel" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/course" class="nav-link">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/feedback" class="nav-link">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mentor Details Section -->
+    <div class="container">
+        <div class="mentor-details mx-auto mt-5">
+            <div class="mentor-profile">
+                <img src="https://cdn1.iconfinder.com/data/icons/circle-flats/170/contacts-512.png" alt="Mentor Profile Picture">
+                <div class="mentor-info">
+                    <h3>Manikandan Sir</h3>
+                    <h5>M.Tech in Information Technology</h5>
+                    <p>Email: manikandan@institute.edu</p>
+                    <p>Phone: +91 9876543210</p>
+                    <p>Specialization: Cloud Computing, Web Development</p>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="btn-video-call" onclick="startVideoCall()">Start Video Call</button>
+                <a href="video_calling.html" class="btn-back">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function startVideoCall() {
+            alert("Initiating video call to Manikandan Sir...");
+            // Logic for starting the video call goes here
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+        }
+
+        main {
+            flex: 1;
+            background: url('https://www.example.com/path/to/your/image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+        }
+
+
+        .footer p {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p,
+        .footer p {
+            font-size: 1.2rem;
+        }
+
+
+        .header nav {
+            width: 100%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+
+        .header .dropdown {
+            margin-left: auto;
+        }
+
+
+        .header .dropdown-menu {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .header .dropdown-menu.show {
+            opacity: 1;
+        }
+
+        .header .dropdown-menu:not(.show) {
+            opacity: 0;
+        }
+
+        /* Mobile Hamburger Menu */
+        @media (max-width: 992px) {
+            .header nav {
+                display: none;
+                /* Hide the default navigation on small screens */
+            }
+
+            .header .navbar-toggler {
+                display: block;
+                /* Show the hamburger button */
+            }
+
+            .header .navbar-collapse.show {
+                display: block;
+                /* Show the navbar when toggled */
+            }
+
+            .header nav .navbar-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header nav .navbar-nav .nav-item {
+                padding: 10px 0;
+            }
+        }
+
+        /* Media query for hamburger menu on mobile */
+        @media (max-width: 992px) {
+            .header nav {
+                display: none;
+            }
+
+            .header .navbar-toggler {
+                display: block;
+            }
+
+            .header .navbar-collapse.show {
+                display: block;
+            }
+
+            .header nav .navbar-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header nav .navbar-nav .nav-item {
+                padding: 10px 0;
+            }
+        }
+
+
+
+        @media (max-width: 992px) {
+            .header nav {
+                display: none;
+            }
+
+            .header .navbar-toggler {
+                display: block;
+            }
+
+            .header .navbar-collapse.show {
+                display: block;
+            }
+
+            .header nav .navbar-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header nav .navbar-nav .nav-item {
+                padding: 10px 0;
+            }
+        }
+
+        .box {
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            background: linear-gradient(45deg, #f06, #4a8f99);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            height: 290px;
+            /* Fixed height for uniform box size */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .box:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .box i {
+            font-size: 3rem;
+            padding: 20px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .box h5 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            transition: background-color 0.3s, color 0.3s;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+        }
+
+        .btn-primary:hover {
+            background-color: #004085;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #2d7a2f;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .box-body {
+            animation: fadeIn 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Student Panel</h1>
+            <p>Manage your academic activities</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/course" class="nav-link">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/notification" class="nav-link">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="d-flex align-items-end justify-content-end"> <!-- Ensure this is aligned right -->
+            <!-- Profile Dropdown -->
+            <div class="dropdown me-3">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="profileDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><span class="dropdown-item name">Name: Anurag Kumar</span></li>
+                    <li><span class="dropdown-item rollNo">Roll No: 12345</span></li>
+                    <li><span class="dropdown-item section">Section: A</span></li>
+                </ul>
+            </div>
+            <!-- Hamburger Menu Button for Mobile View -->
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </header>
+
+
+
+
+
+    <!-- Features -->
+    <main class="container my-5">
+        <div class="row text-center">
+            <!-- Feature Boxes -->
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-id-card text-primary"></i>
+                        <h5 class="mt-3">Admit Card</h5>
+                        <a href="admit_card" class="btn btn-primary mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-comments text-info"></i>
+                        <h5 class="mt-3">Alumni Connect</h5>
+                        <a href="alumni_connect" class="btn btn-success mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-calendar-check text-warning"></i>
+                        <h5 class="mt-3">Attendance</h5>
+                        <a href="/attendance" class="btn btn-warning mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-info-circle text-danger"></i>
+                        <h5 class="mt-3">College Info</h5>
+                        <a href="/college_info" class="btn btn-primary mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-book text-success"></i>
+                        <h5 class="mt-3">Courses</h5>
+                        <a href="/course" class="btn btn-success mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-chair text-pink"></i>
+                        <h5 class="mt-3">Examination Seating Plan</h5>
+                        <a href="/examination_seating_plan" class="btn btn-warning mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-file-alt text-indigo"></i>
+                        <h5 class="mt-3">Fee Undertaking</h5>
+                        <a href="/fee_undertaking" class="btn btn-primary mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-comments text-cyan"></i>
+                        <h5 class="mt-3">Feedback</h5>
+                        <a href="/feedback" class="btn btn-success mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-wallet text-orange"></i>
+                        <h5 class="mt-3">Fees</h5>
+                        <a href="/fees" class="btn btn-warning mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-book-open text-lime"></i>
+                        <h5 class="mt-3">LMS</h5>
+                        <a href="/lms" class="btn btn-primary mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-users text-brown"></i>
+                        <h5 class="mt-3">Mentor Mentee</h5>
+                        <a href="/mentor_mentee" class="btn btn-success mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-file-alt text-purple"></i>
+                        <h5 class="mt-3">My Report Card</h5>
+                        <a href="/my_report_card" class="btn btn-warning mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-video text-success"></i> <!-- Video calling icon -->
+                        <h5 class="mt-3">Video Calling</h5>
+                        <a href="/video_calling" class="btn btn-success mt-2">Start Call</a>
+                        <!-- Button to start video call -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-briefcase text-primary"></i> <!-- Placement Coordinator icon -->
+                        <h5 class="mt-3">Placement Coordinator</h5>
+                        <a href="/placement_coordinator" class="btn btn-primary mt-2">Contact</a>
+                        <!-- Button for contacting -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-book text-warning"></i> <!-- Library Books icon -->
+                        <h5 class="mt-3">Library Books (PDF)</h5>
+                        <a href="/library_books" class="btn btn-warning mt-2">Download</a>
+                        <!-- Button to download PDF -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-envelope text-danger"></i> <!-- Messaging icon -->
+                        <h5 class="mt-3">Message Registrar Office</h5>
+                        <a href="/message_registrar" class="btn btn-danger mt-2">Send Message</a>
+                        <!-- Button for messaging -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box shadow-sm">
+                    <div class="box-body">
+                        <i class="fas fa-comment-dots text-info"></i> <!-- Chatbot icon -->
+                        <h5 class="mt-3">Chatbot</h5>
+                        <a href="/chatbot" class="btn btn-info mt-2">Talk to Bot</a> <!-- Button to open chatbot -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!-- Token Validation Script -->
+    <!-- <script>
+        // Token validation and page load logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                // If no token, redirect to login page
+                window.location.href = 'login.html';
+            }
+
+            // Example: Fetch user data (optional)
+            fetchUserData(token);
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                // Remove token from localStorage and redirect to login
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            });
+        });
+
+        // Example: Fetch user data from API
+        async function fetchUserData(token) {
+            try {
+                const response = await fetch('http://localhost:5000/api/user', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    console.log('User data:', data);
+                    // Display user-specific data here (e.g., name, email)
+                } else {
+                    console.error('Failed to fetch user data');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script> -->
+
+    <script>
+        // DOM fully load hone par yeh code chalega
+        window.addEventListener('DOMContentLoaded', () => {
+            // LocalStorage se user data fetch karenge
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            // Agar user data exist karta hai, to dropdown ko update karenge
+            if (user) {
+                const nameElement = document.querySelector('.dropdown-item.name');
+                const rollNoElement = document.querySelector('.dropdown-item.rollNo');
+                const sectionElement = document.querySelector('.dropdown-item.section');
+
+                // Dropdown ke items ko update karenge
+                if (nameElement) nameElement.textContent = `Name: ${user.name}`;
+                if (rollNoElement) rollNoElement.textContent = `Roll No: ${user.rollNo}`;
+                if (sectionElement) sectionElement.textContent = `Section: ${user.section}`;
+            } else {
+                console.log("User data nahi mil raha hai.");
+            }
+        });
+
+    </script>
+
+
+
+
+</body>
+
+</html>

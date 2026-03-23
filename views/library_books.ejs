@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Books - Student Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .header nav {
+            width: 60%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+
+        .book-section {
+            margin: 40px auto 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .book-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .book-card h4 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .book-card p {
+            font-size: 1rem;
+            color: #d4d4d4;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons a {
+            display: inline-block;
+            margin-right: 10px;
+            text-decoration: none;
+            background-color: #24cfa6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-buttons a:hover {
+            background-color: #20b492;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Student Panel</h1>
+            <p>Library Books</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-60">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="/student_panel" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/course" class="nav-link">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/feedback" class="nav-link">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <div class="container">
+        <div class="book-section">
+            <!-- Data Structures -->
+            <div class="book-card">
+                <h4>Data Structures</h4>
+                <p>Author: Prof. John Smith</p>
+                <div class="action-buttons">
+                    <a href="https://r.search.yahoo.com/_ylt=Awr99LNASJNnIroBiL9XNyoA;_ylu=Y29sbwNncTEEcG9zAzUEdnRpZAMEc2VjA3Ny/RV=2/RE=1738915137/RO=10/RU=https%3a%2f%2focw.mit.edu%2fcourses%2f6-006-introduction-to-algorithms-spring-2020%2fresources%2fmit6_006s20_lec2%2f/RK=2/RS=u9SHaU.0tIBJD50QerhDvXCr.mE-" target="_blank" title="Open Book">Open</a>
+                    <a href="books/data_structures.pdf" download="Data_Structures.pdf" title="Download Book">Download</a>
+                </div>
+            </div>
+            <!-- Discrete Mathematics -->
+            <div class="book-card">
+                <h4>Discrete Mathematics</h4>
+                <p>Author: Dr. Robert Williams</p>
+                <div class="action-buttons">
+                    <a href="https://r.search.yahoo.com/_ylt=Awr.1ukFRZNnirEBBddXNyoA;_ylu=Y29sbwNncTEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1738914309/RO=10/RU=https%3a%2f%2fen.wikipedia.org%2fwiki%2fDiscrete_mathematics/RK=2/RS=fQR_Y9pLEJhksNy1TkOh5J_8H8A-" target="_blank" title="Open Book">Open</a>
+                    <a href="books/discrete_mathematics.pdf" download="Discrete_Mathematics.pdf" title="Download Book">Download</a>
+                </div>
+            </div>
+            <!-- Computer Networks -->
+            <div class="book-card">
+                <h4>Computer Networks</h4>
+                <p>Author: Dr. Jane Miller</p>
+                <div class="action-buttons">
+                    <a href="books/computer_networks.pdf" target="_blank" title="Open Book">Open</a>
+                    <a href="books/computer_networks.pdf" download="Computer_Networks.pdf" title="Download Book">Download</a>
+                </div>
+            </div>
+            <!-- Operating Systems -->
+            <div class="book-card">
+                <h4>Operating Systems</h4>
+                <p>Author: Prof. David Brown</p>
+                <div class="action-buttons">
+                    <a href="books/operating_systems.pdf" target="_blank" title="Open Book">Open</a>
+                    <a href="books/operating_systems.pdf" download="Operating_Systems.pdf" title="Download Book">Download</a>
+                </div>
+            </div>
+            <!-- Database Management Systems -->
+            <div class="book-card">
+                <h4>Database Management Systems</h4>
+                <p>Author: Dr. Susan Lee</p>
+                <div class="action-buttons">
+                    <a href="books/database_management.pdf" target="_blank" title="Open Book">Open</a>
+                    <a href="books/database_management.pdf" download="Database_Management.pdf" title="Download Book">Download</a>
+                </div>
+            </div>
+            <!-- Software Engineering -->
+            <div class="book-card">
+                <h4>Software Engineering</h4>
+                <p>Author: Dr. William Harris</p>
+                <div class="action-buttons">
+                    <a href="books/software_engineering.pdf" target="_blank" title="Open Book">Open</a>
+                    <a href="books/software_engineering.pdf" download="Software_Engineering.pdf" title="Download Book">Download</a>
+                </div>
+            </div>
+            <!-- Machine Learning -->
+            <div class="book-card">
+                <h4>Machine Learning</h4>
+                <p>Author: Prof. Emily Clark</p>
+                <div class="action-buttons">
+                    <a href="books/machine_learning.pdf" target="_blank" title="Open Book">Open</a>
+                    <a href="books/machine_learning.pdf" download="Machine_Learning.pdf" title="Download Book">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+            transition: background 0.5s ease-in-out;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .header nav {
+            width: 60%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-header {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .profile-header h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f4f4f4;
+        }
+
+        .profile-header p {
+            color: #ccc;
+        }
+
+        .profile-header .profile-img-container {
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #24cfa6;
+        }
+
+        .profile-header .profile-img-container button {
+            position: absolute;
+            bottom: 10px;
+            left: 26%;
+            transform: translateX(-50%);
+            background-color: #24cfa6;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .profile-info .info-box {
+            background: #1f1f2d;
+            border-radius: 10px;
+            padding: 20px;
+            width: 48%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .profile-info .info-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-box h5 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #24cfa6;
+        }
+
+        .info-box p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .info-box .info-title {
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            background-color: #24cfa6;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1a9c7e;
+        }
+
+        @media (max-width: 768px) {
+            .profile-info {
+                flex-direction: column;
+            }
+
+            .profile-info .info-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Student Panel</h1>
+            <p>Manage your academic activities</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="student_panel" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/course" class="nav-link">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/notification" class="nav-link">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="d-flex align-items-end justify-content-end">
+            <!-- Profile Dropdown -->
+            <div class="dropdown me-3">
+                <button class="btn btn-outline-light dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><span class="dropdown-item">Name: Anurag Kumar</span></li>
+                    <li><span class="dropdown-item">Roll No: 12345</span></li>
+                    <li><span class="dropdown-item">Section: A</span></li>
+                </ul>
+            </div>
+            <!-- Hamburger Menu Button for Mobile View -->
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <!-- Profile Image Section (Moved to Left) -->
+                <div class="profile-img-container">
+                    <img id="profileImage" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQA1AMBIgACEQEDEQH/xAAcAAADAAIDAQAAAAAAAAAAAAAAAQIDBwQFBgj/xAA+EAABBAEBBAgDBgQEBwAAAAABAAIDEQQFBhIhMQcTIkFRYXGBFDKRI0KhscHRFVJikqKywuEmM0NEU3KC/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECAwQF/8QAHREBAQADAQEBAQEAAAAAAAAAAAECAxEhMRJBBP/aAAwDAQACEQMRAD8A2nSVK6RSJTSYCqkwEEUnSqk6RCKTTpFIJpFKkIJPBdJtHtRpWzkYdqM/2pFtgjG9I727vUrgdJG0k2zWgiXDaPjMmTqoifucLLq9PzWgZ8rI1DKfkZc8ss8ht8jzZcfNRamRs7J6XMiaVw0/TIWRjl10pL3D2AH4rk6Z0ttfksZqOmtZG406SGQkt/8Akj9VrJrAyEPfRc0cLC4c0suQ81HvHxA4qOr/AJj6Q0DabSNfBGm5QfK0W+J3Ze3zIXdVa+YNE1rM0PUIs/DO5PHwBcLBHeD4hfQWxO0ce0+iMzhH1UzXmOaO73XDw8jzUyqWcd5SN1XSSlCSFNLJSRCCKRQV0lSDGQkQshCkhBiIU0spCmkCQqpJEuShVSKQIJ0mAmEQVIpVSdIIpBCohJBNIpUikGm+nbJl/iGlYrSer6mR4bX3t5oXntn9g9T1BjJTJHA1wu3Xa9Z03Yhk1DRJWDtu34wfdpXaafrOBpGLFFnZDY5GtA3eZPmufdnZ5HTpwl9rjab0X4BAfqWVJkHwAoL0UWzmlaUwxYmFExpH8o4rJpe1mj57+pxcvek7wWkUs2razpeE0nNymx/1FYW2xvJyvB7W6Fp/wspGPHGXXxaKpZehHJ6uXU9OoVusmBvv4j9Ap2i2g0nPjMWJlh5PBtsIB90dCmI+PV9blkBuNjI97z3nFbaLflZf6JP42zSVK+CF0uRFJ0mQikE0hVSVIIItSQshCSDEQppZSpQSEKqQgz0ilRQEDATAQFSCaTTQgRCVKqRSCKQrUkWg1r0jY8uTksM53o4cuJ2OSP8Al2AHD0PNcN2j5Ej/AI3FYOteac8sDyGjlQ5r1u3OM92FK5jR247vwc3iFwNC1jEbp4mkkDWtYC6/urh2dmXr0NXLj46fA0XKlmE2dNI9zSSJOo6u/AAHj6rNtVobNT1aMbzmtbC07jR8x912Oo7UadA2N+VJ1bHHsho3iPWuS6vX9rtGh1CA483XSuaK3BwHharzJp58ro5Nl897d2d078eOy4yMa0AdwFLlbDdfh7Tb0T3MifMwStB4P3m7tH816CbaHGyMSSLfjL9wuG6bBC63o9jkztafKWnqI39YTXeBQH1P4K+FtrPZMZGz0UqpOl2vORSKVUmiUUlSukUgx0krpSUEEKaVlJBNIVJIOQik0IGAmkFSBBNCECQmhBKE0IMckTJmFkrWuaeBDhwWmYWQuzsvSMlxjLXuY3upzXWB9L+i3SVpbb7Elw9rM3MjaTC6Vrnbv3baDf1WO6djfRlZfHZYezYjndDmSYs8Dj9k58Be4gjv4+KnVtmMHDifLjNgZK/lWHuj/EeSy6Tn42pYDBHldTI1vOwSD7qcpuPCHPy9VdM1p+UUOFf7rnldvJeV0c2LFoejzTvlE+bIOrD6AaC49w8ALK2d0d4pxdjtOa9tOka6U+PacSPwIWpDkQ7QbRYGmDe+HfOyM0ee87tfhw9lvyKNkUbYomhsbGhrQO4BdGrH+1x785byKTQhbOYIQhAkJopEpUkKu9IoIIU0rKlAkIQgzoQhBQTSCaATSTQCSaRQCSHENaXvIa1vMuNALymvdImz+jh7RknNyG8Opxadx83ch9UHpc3JZh4c+VKLZDG6Rw8QBa1ns/lybSYEmdqIaZsiR+8AODRvENHs2gvN7TdJ2r6vjzYuLDDg4srSxzW/aPc3kQXHx8gum2P2lk0bJ3HgvxJHfaM72+Y/ZU24XLFpqzmOTs9odnpcCaSXTnvZfzNaeYXk5jlg1LNL5g8FueduNqmGzNxHtkieODm8QV5fM0KKfIALmgc3OrkFzTOy8royx7Ox5DDZNpmG7UceQx5EfaheObXdxW/9kdY/j2zWn6m4NbJPF9oGngHtJa4fUFfP+1WqY1jDwHh8LDxeOTyPDyVbL7aa7s8xsWn5Q+E3r+GlaHssmzXeL9V1a8bztc2yzvj6WTWs9D6X8DI3YtbwJcSQ858c9ZH6kfMPx9V73S9a0zV4w/Tc/HyQRyjkBd9OavYzc9CPXh6oUASTSQIpKlJRKXKFblBQCEIQZkWptK0GQJhSCmgpCVotBM00cETpZntjjY3ec9xAAHitX7T9LLWSPx9nccSBpr4ucdl3/q3w8zXouB0v7UOy8v8AgGI9wgx3B2UWmt+SuDT4gc/WvBa1+YcTYV5EOy1rX9U1p+/qmdPkDmI3Ppg9Gjh+C6w1V99KXciTzR91WBzf7LjT7zQ7cJG8KXKA7RRIzebQIB5WQosHFwcrUMAtdiTTx7pv7OQgA+Y5H3C7TXdrdX1fF+ELWY+O5oEvVCjJ42fA+C4f3aRuUAXNNHlfhar+MberTK844EUD7G8CGjg0eK5TRwd6ilQBtzuAYLpUG9gBWkVob87b5Usl7pDmEtc02CDRHoVjApzVR4KR7XZjpL1jR3tiznO1HCBALZXfaAd+6/v9/qtz7P61h6/pMGo6e+4ZBxaa3o3d7XV3hfMJAql6/ov2mOgbQR407y3Bz3tikB5MeeDHfXh6HyVbB9ApJeqLVEhSUyeCklAiVKZUoGhJCC7Ram0rQZAVVrECqBQZFhzchuJhz5L/AJYY3PPsLVgrzvSJlOxditWka7dc6Hq2nzcQ39UHz9PO7JyJcma9+aR0jj4ucbP4lQaHaHv5qGk83cR4jvTddWFqqk8z4FU0dgeiwXxdXkQuQ3l6okwEdyEFEId8wVEmhRJA4C+5Q/kPVMupt+CCfubviaKtQPmaPdWiS7vdQT2nJvPYcsJdcxHj+yDKHWP18VL+zx3jveSY5dk0B3qGAOs/dHNx71A+kdgdXdreyWnZsji6bq+qlP8AWw7p/Jd/a110HZQm2VzIP/Bnvr0cxp/O1sS1nUnakpWgoEeSSCptBVoU2hBSVqSUrQZAnagFO0FWvIdLElbE5Tf5poW/4x+y9da8X0vC9ipeP/cw/wCZTPo0eGkE19O5I9kWOXh4LKD3lJxab4ey1Q41078FkhdbRfMLDMCPZNjuNqvRybSJUgo3lITz2VUrWMDSxxcSLcKPZ8lDjbD5JGq5ohTPm9AqdwUNPFJ7kSmQ9k8VMI4Okfx40PZS+z3hZ4RUbR+agLq3SG38GfyjvWKd3Wu6qP5W8yFnmLq3GntO7/AJNY1jQGilI2p0GS7kes4w4Deikr2I/ZbUtag6EHH+Laq3uOOz/MVt21nUmi0lJKgMlTaRKkoLQpBQgbiptDikEFgpgqQmgq15DpYbvbE5f9M0Lh/eP3XrQvOdI0Rl2K1MVe7GH/2uB/RTPo0SBwUSNvlzVNeSBYFLDLkNa4gtf4cua1UcjT9I1HWsg4+mYrp5RRdRA3BfM+S7XXNhNc0TH+IfCMvHbW/JjW7d9Rzpd50OZ2JHrOotkmMUj4GBm9w47xv9FtObLxetMD8iJsxAdQeN7d8d3wXLs2WZcjp168cp6+bmv4I3l7npL07TsbL3sZsbM/fuVsXASNI5lvcV4VoN7rQfotteX6nWeeP5vDuwUA21v7JhpDgHgi/JZ2RMLd02Vdm4rXc+PJQZAb5lc8RsbyaAVnwcGPUs/HwzOIDM8MEhbvUTy4X40ovk6me10r3LnsoNHovat6Lr4zawar/p49V9XFeKzGHHlkiA3+reW2eHI1apr2TL4vnhcfptokm+KmR7WCzzPILG10gaTLRb4NbyTABbbXWFozbB6EpSNe1Frub8UH6OW47WmOhcf8S5h7vhP9QW51SrHaklNSqhKSVRUFA7QlaEFOSCEIK7kxyQhA11+0cbZdn9SY8W04slj2QhIPnCM2B5BLHa1zBIRb38ymhbT6pHJj7IO7YrwKlzGG96NhvjxF8UIU8h2k07xdfcaRZ8UIQPj4lQ7mEIUCHcTxU4sjo8yB7DTmytIPnYQhVvypx+tndIO0OfgTR4OG5kLZYmvdK0dvieQN0PotcOJJe48XOdZJ7ye9CFTTJMV9t9YH9h7Q3gHiyFFDiQK9EIWlUjYPQl2tf1Inuxm1/ctxIQqVYHkkhCqJPJSUIQJCEIP//Z" alt="Profile Picture">
+                    <input type="file" id="fileInput" style="display: none;" accept="image/*">
+                    <button onclick="document.getElementById('fileInput').click();">Add Photo</button>
+                    <button onclick="removePhoto()">Remove Photo</button>
+                </div>
+                <h2>Anurag Kumar</h2>
+                <p>Roll No: 12345 | Section: A</p>
+            </div>
+
+            <div class="profile-info">
+                <div class="info-box">
+                    <h5>Student Details</h5>
+                    <p><span class="info-title">Full Name:</span> Anurag Kumar</p>
+                    <p><span class="info-title">Roll No:</span> 12345</p>
+                    <p><span class="info-title">Date of Birth:</span> 01/01/2000</p>
+                    <p><span class="info-title">Phone No:</span> +1234567890</p>
+                    <p><span class="info-title">Enrollment No:</span> EN123456</p>
+                    <p><span class="info-title">Course:</span> Computer Science</p>
+                </div>
+
+                <div class="info-box">
+                    <h5>Contact Information</h5>
+                    <p><span class="info-title">Email:</span> anuragkumar@example.com</p>
+                    <p><span class="info-title">Address:</span> 123 Main St, City, Country</p>
+                    <p><span class="info-title">Emergency Contact:</span> +0987654321</p>
+                </div>
+
+                <div class="info-box">
+                    <h5>Academic Information</h5>
+                    <p><span class="info-title">Enrollment Date:</span> 2020-08-15</p>
+                    <p><span class="info-title">Current Semester:</span> 4th Semester</p>
+                    <p><span class="info-title">CGPA:</span> 8.5</p>
+                </div>
+            </div>
+
+            <!-- Update Profile Button -->
+            <div class="text-center mt-4">
+                <button class="btn">Update Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Handle file input for profile image
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Function to remove photo
+        function removePhoto() {
+            document.getElementById('profileImage').src = 'path_to_default_image.jpg';
+            document.getElementById('fileInput').value = '';  // Reset the file input
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Coordinators - Student Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@400;700&family=Juana:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #24cfa6, #302b63);
+            padding: 11px 30px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Juana', serif;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .header nav {
+            width: 60%;
+        }
+
+        .header .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .navbar-nav .nav-item {
+            padding: 10px 15px;
+        }
+
+        .header nav a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #ffffff33;
+            color: #f9f9f9;
+        }
+
+        .header nav a.active {
+            background-color: #ffffff66;
+            color: #24243e;
+            font-weight: 700;
+        }
+
+
+        .coordinator-cards {
+            margin: 40px auto 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card-coordinator {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-coordinator:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-coordinator img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #24cfa6;
+            object-fit: cover;
+        }
+
+        .coordinator-details {
+            flex-grow: 1;
+        }
+
+        .coordinator-details h4 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .coordinator-details h6 {
+            font-size: 1rem;
+            color: #d4d4d4;
+            margin-bottom: 5px;
+        }
+
+        .coordinator-details p {
+            font-size: 0.9rem;
+            color: #ffffffcc;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons a {
+            display: inline-block;
+            margin-right: 10px;
+            text-decoration: none;
+            background-color: #24cfa6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-buttons a:hover {
+            background-color: #20b492;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Welcome to the Student Panel</h1>
+            <p>Placement Coordinators</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light w-60">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto w-100 text-center">
+                    <li class="nav-item">
+                        <a href="/student_panel" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/course" class="nav-link">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/feedback" class="nav-link">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <div class="container">
+        <div class="coordinator-cards">
+            <!-- Coordinator 1 -->
+            <div class="card-coordinator">
+                <img src="https://cdn1.iconfinder.com/data/icons/circle-flats/170/contacts-512.png" alt="Coordinator 1">
+                <div class="coordinator-details">
+                    <h4>Mr. Ramesh Kumar</h4>
+                    <h6>Senior Placement Coordinator</h6>
+                    <p>Phone: +91 9876543210<br>Email: ramesh.kumar@institute.edu</p>
+                    <div class="action-buttons">
+                        <a href="#" onclick="startMessage('Ramesh Kumar')">Message</a>
+                        <a href="#" onclick="startVideoCall('Ramesh Kumar')">Video Call</a>
+                        <a href="#" onclick="startcall('Ramesh kumar')">call</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Coordinator 2 -->
+            <div class="card-coordinator">
+                <img src="https://cdn1.iconfinder.com/data/icons/circle-flats/170/contacts-512.png" alt="Coordinator 2">
+                <div class="coordinator-details">
+                    <h4>Ms. Priya Sharma</h4>
+                    <h6>Junior Placement Coordinator</h6>
+                    <p>Phone: +91 9876543221<br>Email: priya.sharma@institute.edu</p>
+                    <div class="action-buttons">
+                        <a href="#" onclick="startMessage('Priya Sharma')">Message</a>
+                        <a href="#" onclick="startVideoCall('Priya Sharma')">Video Call</a>
+                        <a href="#" onclick="startcall('Priya Sharma')">call</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Institute ERP System. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Messaging and Video Call -->
+    <script>
+        function startMessage(name) {
+            alert(`Starting messaging with ${name}.`);
+            // Here, integrate the messaging functionality as required.
+        }
+
+        function startVideoCall(name) {
+            alert(`Starting a video call with ${name}.`);
+            // Here, integrate the video call functionality as required.
+        }
+        function startcall(name) {
+            alert(`Starting a  call with ${name}.`);
+            // Here, integrate the  call functionality as required.
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
